@@ -231,3 +231,18 @@ class NodeItem(QGraphicsItem):
                 pin.y() + 5,
                 pin.name,
             )
+            
+    def mouseReleaseEvent(self, event):
+        super().mouseReleaseEvent(event)
+
+        scene = self.scene()
+
+        if (
+            scene
+            and scene.main_window
+        ):
+            scene.main_window.compile_graph()
+
+            scene.main_window.inspector.set_node(
+                self
+            )

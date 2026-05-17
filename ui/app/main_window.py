@@ -32,6 +32,8 @@ class MainWindow(QMainWindow):
         self.resize(1800, 1000)
 
         self.scene = GraphScene()
+        self.scene.main_window = self
+
         self.view = GraphView(self.scene)
 
         self.runtime_graph = RuntimeGraph()
@@ -45,16 +47,24 @@ class MainWindow(QMainWindow):
         self.compile_graph()
 
     def setup_docks(self):
+        self.palette = NodePalette()
+
+        self.palette.list_widget.itemDoubleClicked.connect(
+            self.create_node_from_palette
+        )
+
         palette_dock = QDockWidget("Palette")
-        palette_dock.setWidget(NodePalette())
+        palette_dock.setWidget(self.palette)
 
         self.addDockWidget(
             Qt.LeftDockWidgetArea,
             palette_dock,
         )
 
+        self.inspector = InspectorPanel()
+
         inspector_dock = QDockWidget("Inspector")
-        inspector_dock.setWidget(InspectorPanel())
+        inspector_dock.setWidget(self.inspector)
 
         self.addDockWidget(
             Qt.RightDockWidgetArea,
@@ -69,6 +79,24 @@ class MainWindow(QMainWindow):
         self.addDockWidget(
             Qt.BottomDockWidgetArea,
             preview_dock,
+        )
+
+    def create_node_from_palette(self):
+        node_type = (
+            self.palette.get_selected_node_type()
+        )
+
+        if not node_type:
+            return
+
+        center = self.view.mapToScene(
+            self.view.viewport().rect().center()
+        )
+
+        self.create_node(
+            node_type,
+            center.x(),
+            center.y(),
         )
 
     def create_node(
@@ -105,15 +133,25 @@ class MainWindow(QMainWindow):
 
         return node
 
-    def connect_execution(
+    def create_connection_between_pins(
         self,
-        output_pin,
-        input_pin,
+        pin_a,
+        pin_b,
     ):
+        if pin_a.is_input:
+            input_pin = pin_a
+            output_pin = pin_b
+        else:
+            input_pin = pin_b
+            output_pin = pin_a
+
         connection = ConnectionItem(
             output_pin,
             input_pin,
         )
+
+        output_pin.connections.append(connection)
+        input_pin.connections.append(connection)
 
         self.scene.addItem(connection)
 
@@ -121,6 +159,8 @@ class MainWindow(QMainWindow):
             output_pin,
             input_pin,
         )
+
+        self.compile_graph()
 
     def create_demo_graph(self):
         start_node = self.create_node(
@@ -138,7 +178,7 @@ class MainWindow(QMainWindow):
             },
         )
 
-        self.connect_execution(
+        self.create_connection_between_pins(
             start_node.outputs[0],
             print_node.inputs[0],
         )

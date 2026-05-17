@@ -18,7 +18,7 @@ class ConnectionItem(QGraphicsPathItem):
     def __init__(
         self,
         start_pin,
-        end_pin,
+        end_pin=None,
         parent=None,
     ):
         super().__init__(parent)
@@ -26,13 +26,23 @@ class ConnectionItem(QGraphicsPathItem):
         self.start_pin = start_pin
         self.end_pin = end_pin
 
+        self.temp_end_pos = QPointF()
+
         self.setZValue(-1)
 
         self.update_path()
 
+    def set_end_pos(self, pos):
+        self.temp_end_pos = pos
+        self.update_path()
+
     def update_path(self):
         start = self.start_pin.scenePos()
-        end = self.end_pin.scenePos()
+
+        if self.end_pin:
+            end = self.end_pin.scenePos()
+        else:
+            end = self.temp_end_pos
 
         path = QPainterPath()
 
@@ -63,12 +73,17 @@ class ConnectionItem(QGraphicsPathItem):
             4,
         )
 
-        pen.setCapStyle(
-            Qt.RoundCap,
-        )
-
-        pen.setJoinStyle(
-            Qt.RoundJoin,
-        )
+        pen.setCapStyle(Qt.RoundCap)
+        pen.setJoinStyle(Qt.RoundJoin)
 
         self.setPen(pen)
+
+    def remove_from_pins(self):
+        if not self.end_pin:
+            return
+
+        if self in self.start_pin.connections:
+            self.start_pin.connections.remove(self)
+
+        if self in self.end_pin.connections:
+            self.end_pin.connections.remove(self)

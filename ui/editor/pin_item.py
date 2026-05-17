@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QGraphicsItem
 from PySide6.QtGui import QColor, QBrush, QPen, QPolygonF
-from PySide6.QtCore import QRectF, QPointF
+from PySide6.QtCore import QRectF, QPointF, Qt
 
 from ui.styling.colors import (
     EXECUTION_COLOR,
@@ -40,7 +40,13 @@ class PinItem(QGraphicsItem):
 
         self.runtime_pin = None
 
+        self.connections = []
+
         self.setAcceptHoverEvents(True)
+
+        self.setFlag(
+            QGraphicsItem.ItemSendsScenePositionChanges
+        )
 
     def boundingRect(self):
         return QRectF(
@@ -81,3 +87,21 @@ class PinItem(QGraphicsItem):
                 self.radius * 2,
                 self.radius * 2,
             )
+
+    def itemChange(self, change, value):
+        if (
+            change
+            == QGraphicsItem.ItemScenePositionHasChanged
+        ):
+            for connection in self.connections:
+                connection.update_path()
+
+        return super().itemChange(change, value)
+
+    def mousePressEvent(self, event):
+        scene = self.scene()
+
+        if hasattr(scene, "begin_connection_drag"):
+            scene.begin_connection_drag(self)
+
+        event.accept()
