@@ -1,6 +1,15 @@
 from PySide6.QtWidgets import QGraphicsPathItem
-from PySide6.QtGui import QPainterPath, QPen, QColor
-from PySide6.QtCore import QPointF
+
+from PySide6.QtGui import (
+    QPainterPath,
+    QPen,
+    QColor,
+)
+
+from PySide6.QtCore import (
+    QPointF,
+    Qt,
+)
 
 from ui.styling.colors import CONNECTION_COLOR
 
@@ -26,6 +35,7 @@ class ConnectionItem(QGraphicsPathItem):
         end = self.end_pin.scenePos()
 
         path = QPainterPath()
+
         path.moveTo(start)
 
         dx = abs(end.x() - start.x()) * 0.5
@@ -48,7 +58,17 @@ class ConnectionItem(QGraphicsPathItem):
 
         self.setPath(path)
 
-        pen = QPen(QColor(CONNECTION_COLOR), 4)
-        pen.setCapStyle(pen.RoundCap)
+        pen = QPen(
+            QColor(CONNECTION_COLOR),
+            4,
+        )
+
+        pen.setCapStyle(
+            Qt.RoundCap,
+        )
+
+        pen.setJoinStyle(
+            Qt.RoundJoin,
+        )
 
         self.setPen(pen)

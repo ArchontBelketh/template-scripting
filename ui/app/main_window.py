@@ -3,6 +3,8 @@ from PySide6.QtWidgets import (
     QDockWidget,
 )
 
+from PySide6.QtCore import Qt
+
 from ui.editor.graph_scene import GraphScene
 from ui.editor.graph_view import GraphView
 from ui.editor.node_item import NodeItem
@@ -39,7 +41,7 @@ class MainWindow(QMainWindow):
         palette_dock.setWidget(NodePalette())
 
         self.addDockWidget(
-            1,
+            Qt.LeftDockWidgetArea,
             palette_dock,
         )
 
@@ -47,7 +49,7 @@ class MainWindow(QMainWindow):
         inspector_dock.setWidget(InspectorPanel())
 
         self.addDockWidget(
-            2,
+            Qt.RightDockWidgetArea,
             inspector_dock,
         )
 
@@ -55,7 +57,7 @@ class MainWindow(QMainWindow):
         preview_dock.setWidget(CodePreview())
 
         self.addDockWidget(
-            8,
+            Qt.BottomDockWidgetArea,
             preview_dock,
         )
 
