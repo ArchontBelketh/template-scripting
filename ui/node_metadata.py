@@ -32,4 +32,27 @@ NODE_METADATA = {
             },
         ],
     },
+        "async_function": {
+        "title": "Async Function",
+        "category": "Structure",
+        "color": "#ffffff",
+        "inputs": [],
+        "outputs": [],
+    },
+
+    "class": {
+        "title": "Class",
+        "category": "Structure",
+        "color": "#ffffff",
+        "inputs": [],
+        "outputs": [],
+    },
+
+    "import": {
+        "title": "Import",
+        "category": "Imports",
+        "color": "#ffffff",
+        "inputs": [],
+        "outputs": [],
+    },
 }

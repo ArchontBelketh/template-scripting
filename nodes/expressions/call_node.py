@@ -12,18 +12,33 @@ class CallNode(ExpressionNode):
         self,
         func,
         args=None,
+        kwargs=None,
     ):
         self.func = func
+
         self.args = args or []
+        self.kwargs = kwargs or {}
 
     def render(self, indent=0, context=None):
         func_code = self.func.render(
             context=context,
         )
 
-        args_code = ", ".join(
+        positional = [
             arg.render(context=context)
             for arg in self.args
+        ]
+
+        keyword = [
+            (
+                f"{key}="
+                f"{value.render(context=context)}"
+            )
+            for key, value in self.kwargs.items()
+        ]
+
+        args_code = ", ".join(
+            positional + keyword
         )
 
         return f"{func_code}({args_code})"

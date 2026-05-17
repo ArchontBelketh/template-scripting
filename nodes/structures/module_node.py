@@ -1,7 +1,6 @@
 from registry.node_registry import register_node
 
 from core.context import RenderContext
-
 from core.base_node import BaseNode
 
 
@@ -19,12 +18,13 @@ class ModuleNode(BaseNode):
         code_blocks = []
 
         for node in self.body_nodes:
-            code_blocks.append(
-                node.render(
-                    indent=0,
-                    context=context,
-                )
+            rendered = node.render(
+                indent=0,
+                context=context,
             )
+
+            if rendered.strip():
+                code_blocks.append(rendered)
 
         imports_code = ""
 
@@ -34,4 +34,7 @@ class ModuleNode(BaseNode):
                 + "\n\n"
             )
 
-        return imports_code + "\n\n".join(code_blocks)
+        return (
+            imports_code
+            + "\n\n".join(code_blocks)
+        )
