@@ -1,3 +1,4 @@
+from ui.app.app import run_app
 from core.generator import PythonGenerator
 
 from nodes.structures.module_node import ModuleNode
@@ -39,3 +40,6 @@ generator = PythonGenerator()
 code = generator.generate(module)
 
 print(code)
+
+if __name__ == "__main__":
+    run_app()
