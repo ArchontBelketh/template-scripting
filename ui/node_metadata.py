@@ -1,25 +1,12 @@
 NODE_METADATA = {
-    "while": {
-        "title": "While",
+    "start": {
+        "title": "Start",
         "category": "Flow",
-        "color": "#ffb347",
-        "inputs": [
-            {
-                "name": "exec",
-                "type": "execution",
-            },
-            {
-                "name": "condition",
-                "type": "bool",
-            },
-        ],
+        "color": "#ffffff",
+        "inputs": [],
         "outputs": [
             {
-                "name": "loop",
-                "type": "execution",
-            },
-            {
-                "name": "completed",
+                "name": "next",
                 "type": "execution",
             },
         ],

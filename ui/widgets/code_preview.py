@@ -16,9 +16,10 @@ class CodePreview(QWidget):
 
         self.editor = QPlainTextEdit()
 
-        self.editor.setPlainText(
-            "# Generated code will appear here"
-        )
+        self.editor.setReadOnly(True)
 
         layout.addWidget(title)
         layout.addWidget(self.editor)
+
+    def set_code(self, code):
+        self.editor.setPlainText(code)

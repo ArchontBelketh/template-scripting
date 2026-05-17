@@ -16,6 +16,10 @@ from ui.widgets.code_preview import CodePreview
 
 from ui.node_metadata import NODE_METADATA
 
+from ui.runtime.runtime_graph import RuntimeGraph
+
+from compiler.graph_compiler import GraphCompiler
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -30,11 +34,15 @@ class MainWindow(QMainWindow):
         self.scene = GraphScene()
         self.view = GraphView(self.scene)
 
+        self.runtime_graph = RuntimeGraph()
+
         self.setCentralWidget(self.view)
 
         self.setup_docks()
 
         self.create_demo_graph()
+
+        self.compile_graph()
 
     def setup_docks(self):
         palette_dock = QDockWidget("Palette")
@@ -53,42 +61,93 @@ class MainWindow(QMainWindow):
             inspector_dock,
         )
 
+        self.preview = CodePreview()
+
         preview_dock = QDockWidget("Code Preview")
-        preview_dock.setWidget(CodePreview())
+        preview_dock.setWidget(self.preview)
 
         self.addDockWidget(
             Qt.BottomDockWidgetArea,
             preview_dock,
         )
 
-    def create_demo_graph(self):
-        while_meta = NODE_METADATA["while"]
+    def create_node(
+        self,
+        node_type,
+        x,
+        y,
+        properties=None,
+    ):
+        metadata = NODE_METADATA[node_type]
 
-        while_node = NodeItem(
-            while_meta["title"],
-            while_meta["inputs"],
-            while_meta["outputs"],
+        node = NodeItem(
+            node_type,
+            metadata["title"],
+            metadata["inputs"],
+            metadata["outputs"],
         )
 
-        while_node.setPos(0, 0)
+        node.properties = properties or {}
 
-        self.scene.addItem(while_node)
+        node.setPos(x, y)
 
-        print_meta = NODE_METADATA["print"]
+        self.scene.addItem(node)
 
-        print_node = NodeItem(
-            print_meta["title"],
-            print_meta["inputs"],
-            print_meta["outputs"],
-        )
+        self.runtime_graph.create_node_from_item(node)
 
-        print_node.setPos(450, 120)
+        runtime_node = node.runtime_node
 
-        self.scene.addItem(print_node)
+        for index, pin in enumerate(node.inputs):
+            pin.runtime_pin = runtime_node.input_pins[index]
 
+        for index, pin in enumerate(node.outputs):
+            pin.runtime_pin = runtime_node.output_pins[index]
+
+        return node
+
+    def connect_execution(
+        self,
+        output_pin,
+        input_pin,
+    ):
         connection = ConnectionItem(
-            while_node.outputs[0],
-            print_node.inputs[0],
+            output_pin,
+            input_pin,
         )
 
         self.scene.addItem(connection)
+
+        self.runtime_graph.create_connection(
+            output_pin,
+            input_pin,
+        )
+
+    def create_demo_graph(self):
+        start_node = self.create_node(
+            "start",
+            0,
+            0,
+        )
+
+        print_node = self.create_node(
+            "print",
+            450,
+            100,
+            {
+                "value": "Hello Runtime Graph",
+            },
+        )
+
+        self.connect_execution(
+            start_node.outputs[0],
+            print_node.inputs[0],
+        )
+
+    def compile_graph(self):
+        compiler = GraphCompiler(
+            self.runtime_graph.graph,
+        )
+
+        code = compiler.compile()
+
+        self.preview.set_code(code)

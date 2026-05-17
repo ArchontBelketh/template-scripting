@@ -38,6 +38,8 @@ class PinItem(QGraphicsItem):
 
         self.radius = PIN_RADIUS
 
+        self.runtime_pin = None
+
         self.setAcceptHoverEvents(True)
 
     def boundingRect(self):

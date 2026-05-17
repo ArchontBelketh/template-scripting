@@ -6,3 +6,6 @@ class Connection:
     ):
         self.output_pin = output_pin
         self.input_pin = input_pin
+
+        self.output_pin.connect(self)
+        self.input_pin.connect(self)

@@ -36,15 +36,23 @@ from ui.styling.metrics import (
 class NodeItem(QGraphicsItem):
     def __init__(
         self,
+        node_type,
         title,
         inputs,
         outputs,
     ):
         super().__init__()
 
+        self.node_type = node_type
+
         self.title = title
+
         self.inputs = []
         self.outputs = []
+
+        self.properties = {}
+
+        self.runtime_node = None
 
         self.width = NODE_WIDTH
 
