@@ -87,3 +87,11 @@ class ConnectionItem(QGraphicsPathItem):
 
         if self in self.end_pin.connections:
             self.end_pin.connections.remove(self)
+
+    def destroy(self):
+        self.remove_from_pins()
+
+        scene = self.scene()
+
+        if scene:
+            scene.removeItem(self)

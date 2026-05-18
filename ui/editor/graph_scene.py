@@ -105,13 +105,33 @@ class GraphScene(QGraphicsScene):
 
         all_pins = node.inputs + node.outputs
 
+        runtime_node = node.runtime_node
+
         for pin in all_pins:
             for connection in pin.connections.copy():
                 connection.remove_from_pins()
 
+                if (
+                    connection
+                    in self.main_window.runtime_graph.graph.connections
+                ):
+                    self.main_window.runtime_graph.graph.connections.remove(
+                        connection
+                    )
+
                 self.removeItem(connection)
 
+        if (
+            runtime_node
+            in self.main_window.runtime_graph.graph.nodes
+        ):
+            self.main_window.runtime_graph.graph.nodes.remove(
+                runtime_node
+            )
+
         self.removeItem(node)
+
+        self.main_window.compile_graph()
 
     def drawBackground(self, painter, rect):
         painter.fillRect(

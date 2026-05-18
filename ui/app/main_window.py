@@ -1,7 +1,11 @@
 from PySide6.QtWidgets import (
     QMainWindow,
     QDockWidget,
+    QFileDialog,
+    QMessageBox,
 )
+
+from PySide6.QtGui import QAction
 
 from PySide6.QtCore import Qt
 
@@ -19,6 +23,12 @@ from ui.node_metadata import NODE_METADATA
 from ui.runtime.runtime_graph import RuntimeGraph
 
 from compiler.graph_compiler import GraphCompiler
+
+from serializer.graph_serializer import (
+    GraphSerializer,
+)
+
+from serializer.graph_loader import GraphLoader
 
 
 class MainWindow(QMainWindow):
@@ -40,11 +50,48 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(self.view)
 
+        self.setup_menu()
         self.setup_docks()
 
         self.create_demo_graph()
 
         self.compile_graph()
+
+    def setup_menu(self):
+        menu = self.menuBar()
+
+        file_menu = menu.addMenu("File")
+
+        new_action = QAction(
+            "New Project",
+            self,
+        )
+
+        save_action = QAction(
+            "Save Project",
+            self,
+        )
+
+        load_action = QAction(
+            "Load Project",
+            self,
+        )
+
+        new_action.triggered.connect(
+            self.new_project
+        )
+
+        save_action.triggered.connect(
+            self.save_project
+        )
+
+        load_action.triggered.connect(
+            self.load_project
+        )
+
+        file_menu.addAction(new_action)
+        file_menu.addAction(save_action)
+        file_menu.addAction(load_action)
 
     def setup_docks(self):
         self.palette = NodePalette()
@@ -161,6 +208,58 @@ class MainWindow(QMainWindow):
         )
 
         self.compile_graph()
+
+    def clear_graph(self):
+        self.scene.clear()
+
+        self.runtime_graph = RuntimeGraph()
+
+    def new_project(self):
+        self.clear_graph()
+
+        self.compile_graph()
+
+    def save_project(self):
+        path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Save Project",
+            "",
+            "Template Graph (*.tgraph)",
+        )
+
+        if not path:
+            return
+
+        GraphSerializer.save_to_file(
+            self.scene,
+            path,
+        )
+
+        QMessageBox.information(
+            self,
+            "Saved",
+            "Project saved successfully",
+        )
+
+    def load_project(self):
+        path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Load Project",
+            "",
+            "Template Graph (*.tgraph)",
+        )
+
+        if not path:
+            return
+
+        data = GraphSerializer.load_from_file(
+            path
+        )
+
+        GraphLoader.load(
+            self,
+            data,
+        )
 
     def create_demo_graph(self):
         start_node = self.create_node(

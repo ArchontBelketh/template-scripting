@@ -67,3 +67,7 @@ class RuntimeGraph:
         )
 
         self.graph.add_connection(connection)
+    
+    def clear(self):
+        self.graph.nodes.clear()
+        self.graph.connections.clear()
