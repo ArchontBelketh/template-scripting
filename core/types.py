@@ -27,6 +27,10 @@ TYPE_COMPATIBILITY = {
         item for item in DataType
     ],
 
+    DataType.EXECUTION: [
+        DataType.EXECUTION,
+    ],
+
     DataType.INT: [
         DataType.INT,
     ],

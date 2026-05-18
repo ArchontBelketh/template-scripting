@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QGraphicsScene
 from PySide6.QtGui import QColor, QPen
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QRectF
 
 from ui.styling.colors import (
     BACKGROUND_COLOR,
@@ -10,6 +10,7 @@ from ui.styling.colors import (
 from ui.styling.metrics import GRID_SIZE
 
 from ui.editor.connection_item import ConnectionItem
+from ui.editor.pin_item import PinItem
 
 
 class GraphScene(QGraphicsScene):
@@ -48,14 +49,9 @@ class GraphScene(QGraphicsScene):
 
     def mouseReleaseEvent(self, event):
         if self.drag_connection:
-            items = self.items(event.scenePos())
-
-            target_pin = None
-
-            for item in items:
-                if hasattr(item, "pin_type"):
-                    target_pin = item
-                    break
+            target_pin = self.find_pin_near_position(
+                event.scenePos()
+            )
 
             if self.is_valid_connection(
                 self.drag_start_pin,
@@ -66,12 +62,46 @@ class GraphScene(QGraphicsScene):
                     target_pin,
                 )
 
-            self.removeItem(self.drag_connection)
+            self.drag_connection.cleanup()
 
             self.drag_connection = None
             self.drag_start_pin = None
 
         super().mouseReleaseEvent(event)
+
+    def find_pin_near_position(
+        self,
+        scene_pos,
+        radius=24,
+    ):
+        rect = QRectF(
+            scene_pos.x() - radius,
+            scene_pos.y() - radius,
+            radius * 2,
+            radius * 2,
+        )
+
+        items = self.items(rect)
+
+        nearest_pin = None
+        nearest_distance = float("inf")
+
+        for item in items:
+            if not isinstance(item, PinItem):
+                continue
+
+            pin_pos = item.scenePos()
+
+            dx = pin_pos.x() - scene_pos.x()
+            dy = pin_pos.y() - scene_pos.y()
+
+            distance = (dx * dx + dy * dy) ** 0.5
+
+            if distance < nearest_distance:
+                nearest_distance = distance
+                nearest_pin = item
+
+        return nearest_pin
 
     def is_valid_connection(
         self,

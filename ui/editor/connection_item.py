@@ -95,3 +95,11 @@ class ConnectionItem(QGraphicsPathItem):
 
         if scene:
             scene.removeItem(self)
+
+    def cleanup(self):
+        self.hide()
+
+        scene = self.scene()
+
+        if scene:
+            scene.removeItem(self)
