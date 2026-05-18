@@ -87,7 +87,19 @@ class GraphScene(QGraphicsScene):
         if start_pin.is_input == end_pin.is_input:
             return False
 
-        if start_pin.pin_type != end_pin.pin_type:
+        from core.types import is_type_compatible
+
+        if start_pin.is_input:
+            source = end_pin
+            target = start_pin
+        else:
+            source = start_pin
+            target = end_pin
+
+        if not is_type_compatible(
+            source.pin_type,
+            target.pin_type,
+        ):
             return False
 
         return True

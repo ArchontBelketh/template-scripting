@@ -1,6 +1,7 @@
 from graph.graph import Graph
 from graph.graph_node import GraphNode
 from graph.connection import Connection
+from graph.auto_layout import GraphAutoLayout
 
 from graph.execution_pin import ExecutionPin
 from graph.data_pin import DataPin
@@ -71,3 +72,10 @@ class RuntimeGraph:
     def clear(self):
         self.graph.nodes.clear()
         self.graph.connections.clear()
+
+    def auto_layout(self):
+        layout = GraphAutoLayout(
+            self.graph
+        )
+
+        layout.apply()

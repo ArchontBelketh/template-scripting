@@ -30,6 +30,10 @@ from serializer.graph_serializer import (
 
 from serializer.graph_loader import GraphLoader
 
+from registry.plugin_manager import (
+    PluginManager,
+)
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -52,6 +56,10 @@ class MainWindow(QMainWindow):
 
         self.setup_menu()
         self.setup_docks()
+
+        self.plugin_manager = PluginManager()
+
+        self.plugin_manager.load_plugins()
 
         self.create_demo_graph()
 
@@ -290,3 +298,14 @@ class MainWindow(QMainWindow):
         code = compiler.compile()
 
         self.preview.set_code(code)
+
+    def auto_layout_graph(self):
+        self.runtime_graph.auto_layout()
+
+        for item in self.scene.items():
+            if not hasattr(item, "runtime_node"):
+                continue
+
+            x, y = item.runtime_node.position
+
+            item.setPos(x, y)

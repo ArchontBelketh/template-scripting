@@ -1,3 +1,6 @@
+from core.types import normalize_type
+
+
 class Pin:
     def __init__(
         self,
@@ -7,7 +10,11 @@ class Pin:
         owner=None,
     ):
         self.name = name
-        self.pin_type = pin_type
+
+        self.pin_type = normalize_type(
+            pin_type
+        )
+
         self.is_input = is_input
 
         self.owner = owner
@@ -21,3 +28,7 @@ class Pin:
     def disconnect(self, connection):
         if connection in self.connections:
             self.connections.remove(connection)
+
+    @property
+    def type_name(self):
+        return self.pin_type.value

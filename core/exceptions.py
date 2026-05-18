@@ -4,3 +4,10 @@ class NodeValidationError(Exception):
 
 class RenderError(Exception):
     pass
+
+class GraphValidationError(Exception):
+    pass
+
+
+class ConnectionValidationError(Exception):
+    pass
