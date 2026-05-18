@@ -38,6 +38,14 @@ class InspectorPanel(QWidget):
         if not node:
             return
 
+        defaults = self.build_default_properties(
+            node
+        )
+
+        for key, value in defaults.items():
+            if key not in node.properties:
+                node.properties[key] = value
+
         for key, value in node.properties.items():
             label = QLabel(key)
 
@@ -52,6 +60,23 @@ class InspectorPanel(QWidget):
 
             self.layout.addWidget(label)
             self.layout.addWidget(field)
+
+    def build_default_properties(self, node):
+        defaults = {}
+
+        if node.node_type == "literal":
+            defaults["value"] = "123"
+
+        elif node.node_type == "variable":
+            defaults["name"] = "my_var"
+
+        elif node.node_type == "assign":
+            defaults["variable"] = "my_var"
+
+        elif node.node_type == "print":
+            defaults["value"] = "Hello World"
+
+        return defaults
 
     def update_property(self, key, value):
         if not self.current_node:

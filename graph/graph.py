@@ -15,3 +15,10 @@ class Graph:
                 return node
 
         return None
+
+    def find_node_by_id(self, node_id):
+        for node in self.nodes:
+            if node.node_id == node_id:
+                return node
+
+        return None

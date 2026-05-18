@@ -68,7 +68,22 @@ class RuntimeGraph:
         )
 
         self.graph.add_connection(connection)
-    
+
+    def get_input_value(
+        self,
+        node,
+        pin_name,
+    ):
+        pin = node.get_input_pin(pin_name)
+
+        if not pin:
+            return None
+
+        if not pin.connections:
+            return None
+
+        return pin.connections[0]
+
     def clear(self):
         self.graph.nodes.clear()
         self.graph.connections.clear()

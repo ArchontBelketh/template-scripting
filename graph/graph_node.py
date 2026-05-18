@@ -26,3 +26,17 @@ class GraphNode:
     def add_output_pin(self, pin):
         pin.owner = self
         self.output_pins.append(pin)
+
+    def get_input_pin(self, name):
+        for pin in self.input_pins:
+            if pin.name == name:
+                return pin
+
+        return None
+
+    def get_output_pin(self, name):
+        for pin in self.output_pins:
+            if pin.name == name:
+                return pin
+
+        return None
