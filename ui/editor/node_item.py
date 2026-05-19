@@ -235,6 +235,13 @@ class NodeItem(QGraphicsItem):
     def mouseReleaseEvent(self, event):
         super().mouseReleaseEvent(event)
 
+        grid_size = 32
+
+        x = round(self.x() / grid_size) * grid_size
+        y = round(self.y() / grid_size) * grid_size
+
+        self.setPos(x, y)
+
         scene = self.scene()
 
         if (

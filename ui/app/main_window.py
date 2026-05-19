@@ -85,6 +85,32 @@ class MainWindow(QMainWindow):
             self,
         )
 
+        undo_action = QAction(
+            "Undo",
+            self,
+        )
+
+        redo_action = QAction(
+            "Redo",
+            self,
+        )
+
+        undo_action.setShortcut("Ctrl+Z")
+        redo_action.setShortcut("Ctrl+Y")
+
+        undo_action.triggered.connect(
+            self.scene.history.undo
+        )
+
+        redo_action.triggered.connect(
+            self.scene.history.redo
+        )
+
+        file_menu.addSeparator()
+
+        file_menu.addAction(undo_action)
+        file_menu.addAction(redo_action)
+
         new_action.triggered.connect(
             self.new_project
         )

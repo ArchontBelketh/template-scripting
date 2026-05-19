@@ -16,7 +16,7 @@ class GraphView(QGraphicsView):
         )
 
         self.setViewportUpdateMode(
-            QGraphicsView.FullViewportUpdate
+            QGraphicsView.SmartViewportUpdate
         )
 
         self.setTransformationAnchor(
