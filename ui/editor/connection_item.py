@@ -76,6 +76,29 @@ class ConnectionItem(QGraphicsPathItem):
         pen.setCapStyle(Qt.RoundCap)
         pen.setJoinStyle(Qt.RoundJoin)
 
+        if self.end_pin:
+            from core.type_validation import (
+                TypeValidationEngine,
+            )
+
+            validator = TypeValidationEngine()
+
+            source = (
+                self.start_pin.runtime_pin
+                .effective_type
+            )
+
+            target = (
+                self.end_pin.runtime_pin
+                .effective_type
+            )
+
+            if validator.can_auto_cast(
+                source,
+                target,
+            ):
+                pen.setStyle(Qt.DashLine)
+
         self.setPen(pen)
 
     def remove_from_pins(self):

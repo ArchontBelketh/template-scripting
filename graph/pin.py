@@ -21,6 +21,8 @@ class Pin:
 
         self.connections = []
 
+        self.inferred_type = None
+
     def connect(self, connection):
         if connection not in self.connections:
             self.connections.append(connection)
@@ -30,5 +32,14 @@ class Pin:
             self.connections.remove(connection)
 
     @property
+    def effective_type(self):
+        return (
+            self.inferred_type
+            or self.pin_type
+        )
+
+    @property
     def type_name(self):
-        return self.pin_type.value
+        return str(
+            self.effective_type
+        )

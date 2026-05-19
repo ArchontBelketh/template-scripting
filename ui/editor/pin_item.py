@@ -12,6 +12,10 @@ from ui.styling.colors import (
 
 from ui.styling.metrics import PIN_RADIUS
 
+from ui.styling.type_colors import (
+    TYPE_COLORS,
+)
+
 
 PIN_COLORS = {
     "execution": EXECUTION_COLOR,
@@ -58,10 +62,7 @@ class PinItem(QGraphicsItem):
 
     def get_color(self):
         return QColor(
-            PIN_COLORS.get(
-                self.pin_type,
-                OBJECT_COLOR,
-            )
+            self.get_type_color()
         )
 
     def paint(self, painter, option, widget):
@@ -105,3 +106,13 @@ class PinItem(QGraphicsItem):
             scene.begin_connection_drag(self)
 
         event.accept()
+
+    def get_type_color(self):
+        type_name = (
+            self.runtime_pin.effective_type.name
+        )
+
+        return TYPE_COLORS.get(
+            type_name,
+            "#9ca3af",
+        )

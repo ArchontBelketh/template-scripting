@@ -9,6 +9,17 @@ class Graph:
     def add_connection(self, connection):
         self.connections.append(connection)
 
+    def propagate_types(self):
+        from graph.type_propagator import (
+            GraphTypePropagator,
+        )
+
+        propagator = GraphTypePropagator(
+            self
+        )
+
+        propagator.propagate()
+
     def find_node_by_type(self, node_type):
         for node in self.nodes:
             if node.node_type == node_type:

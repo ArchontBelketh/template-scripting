@@ -32,15 +32,9 @@ class GraphValidator:
             output_pin = connection.output_pin
             input_pin = connection.input_pin
 
-            if (
-                output_pin.pin_type
-                == DataType.EXECUTION
-            ):
-                continue
-
             if not is_type_compatible(
-                output_pin.pin_type,
-                input_pin.pin_type,
+                output_pin.effective_type,
+                input_pin.effective_type,
             ):
                 errors.append(
                     (

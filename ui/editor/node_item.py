@@ -205,6 +205,34 @@ class NodeItem(QGraphicsItem):
             self.title,
         )
 
+        if self.outputs:
+            output_pin = self.outputs[0]
+
+            if hasattr(output_pin, "runtime_pin"):
+                type_text = (
+                    output_pin.runtime_pin.type_name
+                )
+
+                painter.setPen(
+                    QColor("#9ca3af")
+                )
+
+                small_font = QFont()
+
+                small_font.setPointSize(8)
+
+                painter.setFont(small_font)
+
+                painter.drawText(
+                    12,
+                    NODE_HEADER_HEIGHT - 10,
+                    type_text,
+                )
+
+                painter.setFont(font)
+
+        self.draw_pin_labels(painter)
+
         self.draw_pin_labels(painter)
 
     def draw_pin_labels(self, painter):

@@ -69,6 +69,10 @@ class RuntimeGraph:
 
         self.graph.add_connection(connection)
 
+        self.graph.propagate_types()
+
+        self.scene().update()
+
     def get_input_value(
         self,
         node,

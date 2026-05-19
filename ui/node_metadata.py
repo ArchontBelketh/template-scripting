@@ -1,219 +1,156 @@
+from core.type_system import *
+
 NODE_METADATA = {
-    "start": {
-        "title": "Start",
-        "category": "Flow",
-        "color": "#ffffff",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "next",
-                "type": "execution",
-            },
-        ],
-    },
-
-    "print": {
+    "PrintNode": {
         "title": "Print",
-        "category": "Statement",
-        "color": "#5eead4",
+
         "inputs": [
             {
-                "name": "exec",
-                "type": "execution",
+                "name": "exec_in",
+                "type": EXEC_TYPE,
             },
             {
                 "name": "value",
-                "type": "any",
+                "type": ANY_TYPE,
             },
         ],
+
         "outputs": [
             {
-                "name": "next",
-                "type": "execution",
+                "name": "exec_out",
+                "type": EXEC_TYPE,
             },
         ],
     },
 
-    "literal": {
-        "title": "Literal",
-        "category": "Expression",
-        "color": "#c084fc",
+    "NumberNode": {
+        "title": "Number",
+
         "inputs": [],
+
         "outputs": [
             {
                 "name": "value",
-                "type": "any",
+                "type": FLOAT_TYPE,
             },
         ],
     },
 
-    "variable": {
-        "title": "Variable",
-        "category": "Expression",
-        "color": "#4ade80",
+    "StringNode": {
+        "title": "String",
+
         "inputs": [],
+
         "outputs": [
             {
                 "name": "value",
-                "type": "any",
+                "type": STRING_TYPE,
             },
         ],
     },
 
-    "add": {
+    "BoolNode": {
+        "title": "Bool",
+
+        "inputs": [],
+
+        "outputs": [
+            {
+                "name": "value",
+                "type": BOOL_TYPE,
+            },
+        ],
+    },
+
+    "AddNode": {
         "title": "Add",
-        "category": "Math",
-        "color": "#00d0ff",
+
         "inputs": [
             {
-                "name": "left",
-                "type": "any",
+                "name": "A",
+                "type": FLOAT_TYPE,
             },
             {
-                "name": "right",
-                "type": "any",
+                "name": "B",
+                "type": FLOAT_TYPE,
             },
         ],
+
         "outputs": [
             {
-                "name": "result",
-                "type": "any",
+                "name": "Result",
+                "type": FLOAT_TYPE,
             },
         ],
     },
 
-    "subtract": {
-        "title": "Subtract",
-        "category": "Math",
-        "color": "#00d0ff",
-        "inputs": [
-            {
-                "name": "left",
-                "type": "any",
-            },
-            {
-                "name": "right",
-                "type": "any",
-            },
-        ],
-        "outputs": [
-            {
-                "name": "result",
-                "type": "any",
-            },
-        ],
-    },
-
-    "greater": {
-        "title": "Greater",
-        "category": "Logic",
-        "color": "#ffcc00",
-        "inputs": [
-            {
-                "name": "left",
-                "type": "any",
-            },
-            {
-                "name": "right",
-                "type": "any",
-            },
-        ],
-        "outputs": [
-            {
-                "name": "result",
-                "type": "bool",
-            },
-        ],
-    },
-
-    "branch": {
+    "BranchNode": {
         "title": "Branch",
-        "category": "Flow",
-        "color": "#ffffff",
+
         "inputs": [
             {
-                "name": "exec",
-                "type": "execution",
+                "name": "exec_in",
+                "type": EXEC_TYPE,
             },
             {
                 "name": "condition",
-                "type": "bool",
+                "type": BOOL_TYPE,
             },
         ],
+
         "outputs": [
             {
                 "name": "true",
-                "type": "execution",
+                "type": EXEC_TYPE,
             },
             {
                 "name": "false",
-                "type": "execution",
+                "type": EXEC_TYPE,
             },
         ],
     },
 
-    "while": {
-        "title": "While",
-        "category": "Flow",
-        "color": "#ffffff",
-        "inputs": [
-            {
-                "name": "exec",
-                "type": "execution",
-            },
-            {
-                "name": "condition",
-                "type": "bool",
-            },
-        ],
+    "ListNode": {
+        "title": "List",
+
+        "inputs": [],
+
         "outputs": [
             {
-                "name": "loop",
-                "type": "execution",
-            },
-            {
-                "name": "next",
-                "type": "execution",
+                "name": "items",
+                "type": LIST_TYPE(ANY_TYPE),
             },
         ],
     },
 
-    "assign": {
-        "title": "Assign",
-        "category": "Statement",
-        "color": "#4ade80",
-        "inputs": [
-            {
-                "name": "exec",
-                "type": "execution",
-            },
-            {
-                "name": "value",
-                "type": "any",
-            },
-        ],
+    "DictionaryNode": {
+        "title": "Dictionary",
+
+        "inputs": [],
+
         "outputs": [
             {
-                "name": "next",
-                "type": "execution",
+                "name": "dict",
+                "type": DICT_TYPE(
+                    STRING_TYPE,
+                    ANY_TYPE,
+                ),
             },
         ],
     },
 
-    "return": {
-        "title": "Return",
-        "category": "Statement",
-        "color": "#ffcc00",
-        "inputs": [
-            {
-                "name": "exec",
-                "type": "execution",
-            },
+    "OptionalStringNode": {
+        "title": "Optional String",
+
+        "inputs": [],
+
+        "outputs": [
             {
                 "name": "value",
-                "type": "any",
+                "type": OPTIONAL_TYPE(
+                    STRING_TYPE
+                ),
             },
         ],
-        "outputs": [],
     },
 }

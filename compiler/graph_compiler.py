@@ -43,6 +43,7 @@ class GraphCompiler:
         }
 
     def compile(self):
+        self.graph.propagate_types()
         errors = self.validator.validate()
 
         if errors:
