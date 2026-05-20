@@ -9,5 +9,16 @@ class BaseNode(ABC):
     DISPLAY_NAME = "Base Node"
 
     @abstractmethod
-    def render(self, indent=0, context=None) -> str:
+    def render(
+        self,
+        indent=0,
+        context=None,
+    ) -> str:
+        pass
+
+    @abstractmethod
+    def build_ast(
+        self,
+        context=None,
+    ):
         pass

@@ -1,6 +1,12 @@
-from registry.node_registry import register_node
+import ast
 
-from nodes.base.statement_node import StatementNode
+from registry.node_registry import (
+    register_node,
+)
+
+from nodes.base.statement_node import (
+    StatementNode,
+)
 
 
 @register_node
@@ -16,7 +22,11 @@ class ReturnNode(StatementNode):
 
         self.value = value
 
-    def render(self, indent=0, context=None):
+    def render(
+        self,
+        indent=0,
+        context=None,
+    ):
         ind = "    " * indent
 
         if self.value:
@@ -24,6 +34,24 @@ class ReturnNode(StatementNode):
                 context=context,
             )
 
-            return f"{ind}return {value_code}\n"
+            return (
+                f"{ind}return "
+                f"{value_code}\n"
+            )
 
         return f"{ind}return\n"
+
+    def build_ast(
+        self,
+        context=None,
+    ):
+        if self.value:
+            value = self.value.build_ast(
+                context
+            )
+        else:
+            value = None
+
+        return ast.Return(
+            value=value
+        )
