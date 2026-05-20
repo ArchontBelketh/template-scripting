@@ -1,6 +1,12 @@
-from registry.node_registry import register_node
+import ast
 
-from nodes.base.expression_node import ExpressionNode
+from registry.node_registry import (
+    register_node,
+)
+
+from nodes.base.expression_node import (
+    ExpressionNode,
+)
 
 
 @register_node
@@ -8,10 +14,17 @@ class DictNode(ExpressionNode):
     NODE_TYPE = "dict"
     DISPLAY_NAME = "Dict"
 
-    def __init__(self, items=None):
+    def __init__(
+        self,
+        items=None,
+    ):
         self.items = items or []
 
-    def render(self, indent=0, context=None):
+    def render(
+        self,
+        indent=0,
+        context=None,
+    ):
         parts = []
 
         for key, value in self.items:
@@ -24,7 +37,27 @@ class DictNode(ExpressionNode):
             )
 
             parts.append(
-                f"{key_code}: {value_code}"
+                f"{key_code}: "
+                f"{value_code}"
             )
 
         return "{%s}" % ", ".join(parts)
+
+    def build_ast(
+        self,
+        context=None,
+    ):
+        return ast.Dict(
+            keys=[
+                key.build_ast(context)
+                for key, _
+                in self.items
+            ],
+            values=[
+                value.build_ast(
+                    context
+                )
+                for _, value
+                in self.items
+            ],
+        )

@@ -1,5 +1,3 @@
-import ast
-
 from registry.node_registry import (
     register_node,
 )
@@ -10,32 +8,47 @@ from nodes.base.statement_node import (
 
 
 @register_node
-class PassNode(StatementNode):
-    NODE_TYPE = "pass"
-    DISPLAY_NAME = "Pass"
+class ImportStatementNode(
+    StatementNode
+):
+    NODE_TYPE = "import_statement"
+
+    DISPLAY_NAME = (
+        "Import Statement"
+    )
+
+    def __init__(
+        self,
+        import_node,
+        next_node=None,
+    ):
+        super().__init__(next_node)
+
+        self.import_node = import_node
 
     def render(
         self,
         indent=0,
         context=None,
     ):
-        ind = "    " * indent
+        self.import_node.render(
+            context=context,
+        )
 
-        code = f"{ind}pass\n"
-
-        return (
-            code
-            + self.render_next(
-                indent,
-                context,
-            )
+        return self.render_next(
+            indent,
+            context,
         )
 
     def build_ast(
         self,
         context=None,
     ):
-        nodes = [ast.Pass()]
+        nodes = [
+            self.import_node.build_ast(
+                context
+            )
+        ]
 
         if self.next_node:
             next_ast = (

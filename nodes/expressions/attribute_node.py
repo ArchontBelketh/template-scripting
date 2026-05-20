@@ -1,6 +1,12 @@
-from registry.node_registry import register_node
+import ast
 
-from nodes.base.expression_node import ExpressionNode
+from registry.node_registry import (
+    register_node,
+)
+
+from nodes.base.expression_node import (
+    ExpressionNode,
+)
 
 
 @register_node
@@ -16,9 +22,28 @@ class AttributeNode(ExpressionNode):
         self.value = value
         self.attribute = attribute
 
-    def render(self, indent=0, context=None):
+    def render(
+        self,
+        indent=0,
+        context=None,
+    ):
         value_code = self.value.render(
             context=context,
         )
 
-        return f"{value_code}.{self.attribute}"
+        return (
+            f"{value_code}."
+            f"{self.attribute}"
+        )
+
+    def build_ast(
+        self,
+        context=None,
+    ):
+        return ast.Attribute(
+            value=self.value.build_ast(
+                context
+            ),
+            attr=self.attribute,
+            ctx=ast.Load(),
+        )
