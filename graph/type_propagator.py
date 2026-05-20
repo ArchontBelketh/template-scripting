@@ -3,29 +3,21 @@ class GraphTypePropagator:
         self.graph = graph
 
     def propagate(self):
+        """Проводит распространение типов по графу до стабилизации изменений."""
+        iterations = 0
+        max_iterations = 20
         changed = True
 
-        iterations = 0
-
-        while changed and iterations < 20:
+        while changed and iterations < max_iterations:
+            changed = False
             iterations += 1
 
-            changed = False
+            for node in self.graph.nodes.values():
+                # Каждая нода сама вычисляет свои выходные типы на основе входных данных
+                if hasattr(node, "infer_output_types"):
+                    old_types = {p.name: p.inferred_type for p in node.outputs.values()}
+                    node.infer_output_types()
+                    new_types = {p.name: p.inferred_type for p in node.outputs.values()}
 
-            for connection in self.graph.connections:
-                source = connection.output_pin
-                target = connection.input_pin
-
-                source_type = (
-                    source.effective_type
-                )
-
-                if (
-                    target.inferred_type
-                    != source_type
-                ):
-                    target.inferred_type = (
-                        source_type
-                    )
-
-                    changed = True
+                    if old_types != new_types:
+                        changed = True

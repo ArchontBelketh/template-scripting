@@ -1,45 +1,27 @@
-from core.types import normalize_type
+from typing import Optional, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from graph.connection import Connection
+    from core.type_system import TypeInfo
 
 
 class Pin:
-    def __init__(
-        self,
-        name,
-        pin_type,
-        is_input,
-        owner=None,
-    ):
-        self.name = name
-
-        self.pin_type = normalize_type(
-            pin_type
-        )
-
-        self.is_input = is_input
-
-        self.owner = owner
-
-        self.connections = []
-
-        self.inferred_type = None
-
-    def connect(self, connection):
-        if connection not in self.connections:
-            self.connections.append(connection)
-
-    def disconnect(self, connection):
-        if connection in self.connections:
-            self.connections.remove(connection)
+    def __init__(self, name: str, direction: str, pin_type: "TypeInfo"):
+        self.name: str = name
+        self.direction: str = direction  # "input" или "output"
+        self.pin_type: "TypeInfo" = pin_type
+        self.inferred_type: Optional["TypeInfo"] = None
+        self.node = None  # Заполняется при добавлении в ноду
+        self.connections: List["Connection"] = []
 
     @property
-    def effective_type(self):
-        return (
-            self.inferred_type
-            or self.pin_type
-        )
+    def effective_type(self) -> "TypeInfo":
+        """Возвращает выведенный тип, если он есть, иначе базовый объявленный."""
+        if self.direction == "input" and self.connections:
+            # Входной пин наследует тип от присоединенного выхода
+            source_pin = self.connections[0].source_pin
+            return source_pin.effective_type
+        return self.inferred_type if self.inferred_type else self.pin_type
 
-    @property
-    def type_name(self):
-        return str(
-            self.effective_type
-        )
+    def is_connected(self) -> bool:
+        return len(self.connections) > 0

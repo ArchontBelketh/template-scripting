@@ -1,11 +1,15 @@
-class Connection:
-    def __init__(
-        self,
-        output_pin,
-        input_pin,
-    ):
-        self.output_pin = output_pin
-        self.input_pin = input_pin
+from typing import TYPE_CHECKING
 
-        self.output_pin.connect(self)
-        self.input_pin.connect(self)
+if TYPE_CHECKING:
+    from graph.pin import Pin
+
+
+class Connection:
+    def __init__(self, source_pin: "Pin", target_pin: "Pin"):
+        self.source_pin: "Pin" = source_pin
+        self.target_pin: "Pin" = target_pin
+
+    def __eq__(self, other):
+        if not isinstance(other, Connection):
+            return False
+        return self.source_pin == other.source_pin and self.target_pin == other.target_pin

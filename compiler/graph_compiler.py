@@ -1,4 +1,5 @@
 from core.generator import PythonGenerator
+from core.exceptions import GraphCompilationError
 
 from graph.validator import GraphValidator
 from graph.tracer import ExecutionTracer
@@ -26,9 +27,7 @@ class GraphCompiler:
     def __init__(self, graph):
         self.graph = graph
 
-        self.validator = GraphValidator(
-            graph
-        )
+        self.validator = GraphValidator()
 
         self.tracer = ExecutionTracer()
 
@@ -42,9 +41,11 @@ class GraphCompiler:
             "return": self.compile_return_node,
         }
 
-    def compile(self):
+    def compile(self) -> str:
         self.graph.propagate_types()
-        errors = self.validator.validate()
+        errors = self.validator.validate(self.graph)
+        if errors:
+            raise GraphCompilationError(f"Validation failed with {len(errors)} errors")
 
         if errors:
             return "\n".join(

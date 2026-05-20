@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QGraphicsItem
 from PySide6.QtGui import QColor, QBrush, QPen, QPolygonF
-from PySide6.QtCore import QRectF, QPointF, Qt
+from PySide6.QtCore import QRectF, QPointF
 
 from ui.styling.colors import (
     EXECUTION_COLOR,

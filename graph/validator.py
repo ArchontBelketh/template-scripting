@@ -1,100 +1,51 @@
-from core.types import (
-    DataType,
-    is_type_compatible,
-)
-
-from core.exceptions import (
-    GraphValidationError,
-)
+from typing import List, Set
+from graph.graph import Graph
+from core.type_validation import TypeValidationEngine
 
 
 class GraphValidator:
-    def __init__(self, graph):
-        self.graph = graph
-
-    def validate(self):
-        errors = []
-
-        errors.extend(
-            self.validate_connections()
-        )
-
-        errors.extend(
-            self.validate_execution_cycles()
-        )
-
-        return errors
-
-    def validate_connections(self):
-        errors = []
-
-        for connection in self.graph.connections:
-            output_pin = connection.output_pin
-            input_pin = connection.input_pin
-
-            if not is_type_compatible(
-                output_pin.effective_type,
-                input_pin.effective_type,
-            ):
+    @staticmethod
+    def validate(graph: Graph) -> List[str]:
+        errors: List[str] = []
+        
+        # 1. Проверка типов подключений данных
+        for conn in graph.connections:
+            src_type = conn.source_pin.effective_type
+            tgt_type = conn.target_pin.effective_type
+            
+            if not TypeValidationEngine.validate_connection(src_type, tgt_type):
                 errors.append(
-                    (
-                        f"Type mismatch: "
-                        f"{output_pin.type_name} -> "
-                        f"{input_pin.type_name}"
-                    )
+                    f"Несовместимые типы: нельзя подключить пин '{conn.source_pin.node.title}.{conn.source_pin.name}' "
+                    f"({src_type}) к пину '{conn.target_pin.node.title}.{conn.target_pin.name}' ({tgt_type})."
                 )
 
-        return errors
+        # 2. Поиск циклов в графе исполнения (DFS)
+        visited: Set[str] = set()
+        recursion_stack: Set[str] = set()
 
-    def validate_execution_cycles(self):
-        visited = set()
-        recursion = set()
+        def dfs_check_cycles(node_id: str) -> bool:
+            visited.add(node_id)
+            recursion_stack.add(node_id)
 
-        errors = []
+            node = graph.nodes.get(node_id)
+            if node:
+                for out_pin in node.outputs.values():
+                    if out_pin.pin_type.name == "exec":
+                        for conn in out_pin.connections:
+                            neighbor_id = conn.target_pin.node.id
+                            if neighbor_id not in visited:
+                                if dfs_check_cycles(neighbor_id):
+                                    return True
+                            elif neighbor_id in recursion_stack:
+                                return True
 
-        for node in self.graph.nodes:
-            if self.walk_cycle(
-                node,
-                visited,
-                recursion,
-            ):
-                errors.append(
-                    "Execution cycle detected"
-                )
-
-        return errors
-
-    def walk_cycle(
-        self,
-        node,
-        visited,
-        recursion,
-    ):
-        if node.node_id in recursion:
-            return True
-
-        if node.node_id in visited:
+            recursion_stack.remove(node_id)
             return False
 
-        visited.add(node.node_id)
-        recursion.add(node.node_id)
+        for node_id in graph.nodes:
+            if node_id not in visited:
+                if dfs_check_cycles(node_id):
+                    errors.append("В графе исполнения обнаружен цикл!")
+                    break
 
-        for pin in node.output_pins:
-            if pin.pin_type != DataType.EXECUTION:
-                continue
-
-            for connection in pin.connections:
-                target = (
-                    connection.input_pin.owner
-                )
-
-                if self.walk_cycle(
-                    target,
-                    visited,
-                    recursion,
-                ):
-                    return True
-
-        recursion.remove(node.node_id)
-
-        return False
+        return errors

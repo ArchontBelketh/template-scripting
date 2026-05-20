@@ -1,35 +1,10 @@
-from core.type_system import ANY_TYPE
+from core.type_system import TypeInfo
 
 
 class TypeValidationEngine:
-    def validate(
-        self,
-        output_type,
-        input_type,
-    ):
-        if input_type.name == "any":
-            return True
-
-        if output_type.name == "any":
-            return True
-
-        return output_type.matches(
-            input_type
-        )
-
-    def can_auto_cast(
-        self,
-        output_type,
-        input_type,
-    ):
-        allowed = {
-            ("int", "float"),
-            ("int", "str"),
-            ("float", "str"),
-            ("bool", "str"),
-        }
-
-        return (
-            output_type.name,
-            input_type.name,
-        ) in allowed
+    @staticmethod
+    def validate_connection(source_type: TypeInfo, target_type: TypeInfo) -> bool:
+        """Проверяет допустимость связи между выходным и входным пинами."""
+        if source_type.name == "exec" or target_type.name == "exec":
+            return source_type.name == target_type.name
+        return source_type.matches(target_type)
