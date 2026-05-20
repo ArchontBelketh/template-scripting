@@ -1,5 +1,5 @@
 from core.types import (
-    DataType,
+    EXEC_TYPE,
     is_type_compatible,
 )
 
@@ -80,7 +80,7 @@ class GraphValidator:
         recursion.add(node.node_id)
 
         for pin in node.output_pins:
-            if pin.pin_type != DataType.EXECUTION:
+            if pin.pin_type != EXEC_TYPE:
                 continue
 
             for connection in pin.connections:

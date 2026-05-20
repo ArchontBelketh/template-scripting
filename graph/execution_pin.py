@@ -1,6 +1,6 @@
 from graph.pin import Pin
 
-from core.types import DataType
+from core.type_system import EXEC_TYPE
 
 
 class ExecutionPin(Pin):
@@ -8,9 +8,11 @@ class ExecutionPin(Pin):
         self,
         name,
         is_input,
+        owner=None,
     ):
         super().__init__(
             name=name,
-            pin_type=DataType.EXECUTION,
+            pin_type=EXEC_TYPE,
             is_input=is_input,
+            owner=owner,
         )

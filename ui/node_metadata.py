@@ -1,7 +1,19 @@
 from core.type_system import *
 
 NODE_METADATA = {
-    "PrintNode": {
+    "start": {
+        "title": "Start",
+
+        "inputs": [],
+
+        "outputs": [
+            {
+                "name": "exec",
+                "type": EXEC_TYPE,
+            },
+        ],
+    },
+    "print": {
         "title": "Print",
 
         "inputs": [
@@ -23,7 +35,7 @@ NODE_METADATA = {
         ],
     },
 
-    "NumberNode": {
+    "number": {
         "title": "Number",
 
         "inputs": [],
@@ -36,7 +48,7 @@ NODE_METADATA = {
         ],
     },
 
-    "StringNode": {
+    "string": {
         "title": "String",
 
         "inputs": [],
@@ -49,7 +61,7 @@ NODE_METADATA = {
         ],
     },
 
-    "BoolNode": {
+    "bool": {
         "title": "Bool",
 
         "inputs": [],
@@ -62,7 +74,7 @@ NODE_METADATA = {
         ],
     },
 
-    "AddNode": {
+    "add": {
         "title": "Add",
 
         "inputs": [
@@ -84,7 +96,7 @@ NODE_METADATA = {
         ],
     },
 
-    "BranchNode": {
+    "branch": {
         "title": "Branch",
 
         "inputs": [
@@ -110,7 +122,7 @@ NODE_METADATA = {
         ],
     },
 
-    "ListNode": {
+    "list": {
         "title": "List",
 
         "inputs": [],
@@ -123,7 +135,7 @@ NODE_METADATA = {
         ],
     },
 
-    "DictionaryNode": {
+    "dictionary": {
         "title": "Dictionary",
 
         "inputs": [],
@@ -139,7 +151,7 @@ NODE_METADATA = {
         ],
     },
 
-    "OptionalStringNode": {
+    "optional_string": {
         "title": "Optional String",
 
         "inputs": [],

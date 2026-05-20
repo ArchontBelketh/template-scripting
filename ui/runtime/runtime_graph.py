@@ -71,8 +71,6 @@ class RuntimeGraph:
 
         self.graph.propagate_types()
 
-        self.scene().update()
-
     def get_input_value(
         self,
         node,

@@ -1,0 +1,778 @@
+[{
+	"resource": "/C:/portfolio/template-scripting/core/base_node.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`graph.execution_pin.ExecutionPin` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 4,
+	"startColumn": 33,
+	"endLineNumber": 4,
+	"endColumn": 45,
+	"modelVersionId": 2,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/base_node.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.TypeInfo` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 6,
+	"startColumn": 30,
+	"endLineNumber": 6,
+	"endColumn": 38,
+	"modelVersionId": 2,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/base_node.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.ANY_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 6,
+	"startColumn": 40,
+	"endLineNumber": 6,
+	"endColumn": 48,
+	"modelVersionId": 2,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/type_system.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`typing.Optional` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 2,
+	"startColumn": 26,
+	"endLineNumber": 2,
+	"endColumn": 34,
+	"modelVersionId": 16,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/types.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.INT_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 4,
+	"startColumn": 5,
+	"endLineNumber": 4,
+	"endColumn": 13,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/types.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.FLOAT_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 5,
+	"startColumn": 5,
+	"endLineNumber": 5,
+	"endColumn": 15,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/types.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.STRING_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 6,
+	"startColumn": 5,
+	"endLineNumber": 6,
+	"endColumn": 16,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/types.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.BOOL_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 7,
+	"startColumn": 5,
+	"endLineNumber": 7,
+	"endColumn": 14,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/core/types.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.UNION_TYPE` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 8,
+	"startColumn": 5,
+	"endLineNumber": 8,
+	"endColumn": 15,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/graph/type_propagator.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`typing.Set` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 1,
+	"startColumn": 20,
+	"endLineNumber": 1,
+	"endColumn": 23,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/graph/type_propagator.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.TypeInfo` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 2,
+	"startColumn": 30,
+	"endLineNumber": 2,
+	"endColumn": 38,
+	"modelVersionId": 3,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/nodes/expressions/binary_op_node.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.TypeInfo` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 4,
+	"startColumn": 30,
+	"endLineNumber": 4,
+	"endColumn": 38,
+	"modelVersionId": 2,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/nodes/expressions/list_node.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`core.type_system.TypeInfo` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 4,
+	"startColumn": 30,
+	"endLineNumber": 4,
+	"endColumn": 38,
+	"modelVersionId": 2,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/editor/pin_item.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F401",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/unused-import",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`PySide6.QtCore.Qt` imported but unused",
+	"source": "Ruff",
+	"startLineNumber": 3,
+	"startColumn": 45,
+	"endLineNumber": 3,
+	"endColumn": 47,
+	"modelVersionId": 11,
+	"tags": [
+		1
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F403",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`from core.type_system import *` used; unable to detect undefined names",
+	"source": "Ruff",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 31,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`EXEC_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 10,
+	"startColumn": 25,
+	"endLineNumber": 10,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`ANY_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 14,
+	"startColumn": 25,
+	"endLineNumber": 14,
+	"endColumn": 33,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`EXEC_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 21,
+	"startColumn": 25,
+	"endLineNumber": 21,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`FLOAT_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 34,
+	"startColumn": 25,
+	"endLineNumber": 34,
+	"endColumn": 35,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`STRING_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 47,
+	"startColumn": 25,
+	"endLineNumber": 47,
+	"endColumn": 36,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`BOOL_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 60,
+	"startColumn": 25,
+	"endLineNumber": 60,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`FLOAT_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 71,
+	"startColumn": 25,
+	"endLineNumber": 71,
+	"endColumn": 35,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`FLOAT_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 75,
+	"startColumn": 25,
+	"endLineNumber": 75,
+	"endColumn": 35,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`FLOAT_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 82,
+	"startColumn": 25,
+	"endLineNumber": 82,
+	"endColumn": 35,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`EXEC_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 93,
+	"startColumn": 25,
+	"endLineNumber": 93,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`BOOL_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 97,
+	"startColumn": 25,
+	"endLineNumber": 97,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`EXEC_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 104,
+	"startColumn": 25,
+	"endLineNumber": 104,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`EXEC_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 108,
+	"startColumn": 25,
+	"endLineNumber": 108,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`LIST_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 121,
+	"startColumn": 25,
+	"endLineNumber": 121,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`ANY_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 121,
+	"startColumn": 35,
+	"endLineNumber": 121,
+	"endColumn": 43,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`DICT_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 134,
+	"startColumn": 25,
+	"endLineNumber": 134,
+	"endColumn": 34,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`STRING_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 135,
+	"startColumn": 21,
+	"endLineNumber": 135,
+	"endColumn": 32,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`ANY_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 136,
+	"startColumn": 21,
+	"endLineNumber": 136,
+	"endColumn": 29,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`OPTIONAL_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 150,
+	"startColumn": 25,
+	"endLineNumber": 150,
+	"endColumn": 38,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/portfolio/template-scripting/ui/node_metadata.py",
+	"owner": "Ruff",
+	"code": {
+		"value": "F405",
+		"target": {
+			"$mid": 1,
+			"path": "/ruff/rules/undefined-local-with-import-star-usage",
+			"scheme": "https",
+			"authority": "docs.astral.sh"
+		}
+	},
+	"severity": 4,
+	"message": "`STRING_TYPE` may be undefined, or defined from star imports",
+	"source": "Ruff",
+	"startLineNumber": 151,
+	"startColumn": 21,
+	"endLineNumber": 151,
+	"endColumn": 32,
+	"modelVersionId": 2,
+	"origin": "extHost1"
+}]
